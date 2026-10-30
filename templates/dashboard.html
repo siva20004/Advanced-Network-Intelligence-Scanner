@@ -1,0 +1,22 @@
+<html>
+
+<body>
+    <h1>Network Security Dashboard</h1>
+
+    {% for scan in scans %}
+    <hr>
+    <h2>{{ scan.target }}</h2>
+    <p>Device: {{ scan.data.device_type }}</p>
+    <p>Risk: {{ scan.data.risk_level }} ({{ scan.data.risk_score }})</p>
+
+    <ul>
+        {% for port in scan.data.open_ports %}
+        <li>Port {{ port.port }} - {{ port.banner }} - CVE: {{ port.cve }}</li>
+        {% endfor %}
+    </ul>
+
+    {% endfor %}
+
+</body>
+
+</html>
